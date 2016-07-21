@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  jenkins:
+    image: djdefi/rpi-jenkins
+    ports:
+      - 8080:8080
+    volumes:
+      - /home/pirate/jenkins:/usr/local/jenkins
+      - /usr/bin/docker:/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
