@@ -2,6 +2,7 @@ version: "2"
 
 services:
   jenkins:
+    restart: always
     image: djdefi/rpi-jenkins
     ports:
       - 8080:8080
