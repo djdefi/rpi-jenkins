@@ -5,7 +5,7 @@ ENV    DEBIAN_FRONTEND noninteractive
 
 
 # Get system up to date to start with.
-RUN    apt-get --yes update; apt-get --yes upgrade; apt-get --yes install software-properties-common docker
+RUN    apt-get --yes update; apt-get --yes upgrade; apt-get --yes install software-properties-common 
 
 
 # The special trick here is to download and install the Oracle Java 8 installer from Launchpad.net
@@ -14,12 +14,15 @@ RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" 
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 RUN apt-get --yes update
 
+# Setup docker repo
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+RUN echo "deb [arch=armhf] https://download.docker.com/linux/debian \
+     $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
-# Make sure the Oracle Java 8 license is pre-accepted, and install Java 8
+# Make sure the Oracle Java 8 license is pre-accepted, and install Java 8 + Docker
 RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
        echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-       apt-get --yes install curl oracle-java8-installer libapparmor-dev ; apt-get clean
-
+       apt-get --yes install curl oracle-java8-installer libapparmor-dev ocker-ce ; apt-get clean
 
 ENV JENKINS_HOME /usr/local/jenkins
 
