@@ -5,7 +5,12 @@ ENV    DEBIAN_FRONTEND noninteractive
 
 
 # Get system up to date to start with.
-RUN    apt-get --yes update; apt-get --yes upgrade; apt-get --yes install software-properties-common 
+RUN    apt-get --yes update; apt-get --yes upgrade; apt-get --yes install \
+       apt-transport-https \
+       ca-certificates \
+       curl \
+       gnupg2 \
+       software-properties-common
 
 
 # The special trick here is to download and install the Oracle Java 8 installer from Launchpad.net
