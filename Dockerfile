@@ -33,7 +33,7 @@ RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-se
 ENV JENKINS_HOME /usr/local/jenkins
 
 RUN mkdir -p /usr/local/jenkins
-RUN adduser --disabled-login --no-create-home -s /bin/sh -S jenkins 
+RUN adduser --disabled-login --no-create-home --shell /bin/sh jenkins 
 RUN chown -R jenkins:jenkins /usr/local/jenkins/
 ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/local/jenkins.war
 RUN chmod 644 /usr/local/jenkins.war
