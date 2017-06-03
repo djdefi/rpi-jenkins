@@ -10,7 +10,8 @@ RUN    apt-get update; apt-get --yes upgrade; apt-get --yes install \
        ca-certificates \
        curl \
        gnupg2 \
-       software-properties-common
+       software-properties-common \ 
+       libapparmor-dev
 
 
 # The special trick here is to download and install the Oracle Java 8 installer from Launchpad.net
@@ -26,12 +27,13 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
 # Make sure the Oracle Java 8 license is pre-accepted, and install Java 8 + Docker
 RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
        echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-       apt-get update $$ apt-get --yes install curl oracle-java8-installer libapparmor-dev docker-ce ; apt-get clean
+       apt-get update && \
+       apt-get --yes install oracle-java8-installer docker-ce ; apt-get clean
 
 ENV JENKINS_HOME /usr/local/jenkins
 
 RUN mkdir -p /usr/local/jenkins
-RUN adduser --disabled-login --no-create-home --shell /bin/sh jenkins 
+RUN adduser --disabled-login --no-create-home -s /bin/sh -S jenkins 
 RUN chown -R jenkins:jenkins /usr/local/jenkins/
 ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/local/jenkins.war
 RUN chmod 644 /usr/local/jenkins.war
