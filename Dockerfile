@@ -17,7 +17,6 @@ RUN    apt-get --yes update; apt-get --yes upgrade; apt-get --yes install \
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
 RUN echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
-RUN apt-get --yes update
 
 # Setup docker repo
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
@@ -27,7 +26,7 @@ RUN echo "deb [arch=armhf] https://download.docker.com/linux/debian \
 # Make sure the Oracle Java 8 license is pre-accepted, and install Java 8 + Docker
 RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
        echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-       apt-get --yes install curl oracle-java8-installer libapparmor-dev docker-ce ; apt-get clean
+       apt-get --yes update $$ apt-get --yes install curl oracle-java8-installer libapparmor-dev docker-ce ; apt-get clean
 
 ENV JENKINS_HOME /usr/local/jenkins
 
