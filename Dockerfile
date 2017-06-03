@@ -27,7 +27,7 @@ RUN echo "deb [arch=armhf] https://download.docker.com/linux/debian \
 # Make sure the Oracle Java 8 license is pre-accepted, and install Java 8 + Docker
 RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
        echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-       apt-get --yes install curl oracle-java8-installer libapparmor-dev ocker-ce ; apt-get clean
+       apt-get --yes install curl oracle-java8-installer libapparmor-dev docker-ce ; apt-get clean
 
 ENV JENKINS_HOME /usr/local/jenkins
 
