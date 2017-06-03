@@ -7,6 +7,5 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - /home/pirate/jenkins:/usr/local/jenkins
-      - /usr/bin/docker:/usr/bin/docker
+      - /mnt/archive/jenkins:/usr/local/jenkins
       - /var/run/docker.sock:/var/run/docker.sock
