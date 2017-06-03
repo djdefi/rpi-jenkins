@@ -20,7 +20,7 @@ RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | te
     apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
 
 # Setup docker repo
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - \
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
     echo "deb [arch=armhf] https://download.docker.com/linux/debian \
     $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
