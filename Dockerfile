@@ -1,18 +1,16 @@
 FROM resin/rpi-raspbian:latest
 
-# Make sure we don't get notifications we can't answer during building.
-ENV    DEBIAN_FRONTEND noninteractive
-
-
-# Get system up to date to start with.
-RUN    apt-get update; apt-get --yes upgrade; apt-get --yes install \
+# Get system up to date and install deps.
+RUN    DEBIAN_FRONTEND noninteractive \
+       apt-get update; apt-get --yes upgrade; apt-get --yes install \
        apt-transport-https \
        ca-certificates \
        curl \
        gnupg2 \
        software-properties-common \ 
-       libapparmor-dev
-
+       libapparmor-dev && \
+       apt-get clean && apt-get autoremove -q && \
+       rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
 
 # The special trick here is to download and install the Oracle Java 8 installer from Launchpad.net
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list && \
