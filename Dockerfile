@@ -1,8 +1,7 @@
 FROM resin/rpi-raspbian:latest
 
 # Get system up to date and install deps.
-RUN DEBIAN_FRONTEND noninteractive \
-    apt-get update; apt-get --yes upgrade; apt-get --yes install \
+RUN apt-get update; apt-get --yes upgrade; apt-get --yes install \
     apt-transport-https \
     ca-certificates \
     curl \
