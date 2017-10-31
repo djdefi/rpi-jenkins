@@ -1,16 +1,16 @@
 FROM resin/rpi-raspbian:latest
 
 # Get system up to date and install deps.
-RUN    DEBIAN_FRONTEND noninteractive \
-       apt-get update; apt-get --yes upgrade; apt-get --yes install \
-       apt-transport-https \
-       ca-certificates \
-       curl \
-       gnupg2 \
-       software-properties-common \ 
-       libapparmor-dev && \
-       apt-get clean && apt-get autoremove -q && \
-       rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
+RUN DEBIAN_FRONTEND noninteractive \
+    apt-get update; apt-get --yes upgrade; apt-get --yes install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg2 \
+    software-properties-common \ 
+    libapparmor-dev && \
+    apt-get clean && apt-get autoremove -q && \
+    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
 
 # The special trick here is to download and install the Oracle Java 8 installer from Launchpad.net
 RUN echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list && \
@@ -23,10 +23,10 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
     $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
 
 # Make sure the Oracle Java 8 license is pre-accepted, and install Java 8 + Docker
-RUN    echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
-       echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
-       apt-get update && \
-       apt-get --yes install oracle-java8-installer docker-ce ; apt-get clean
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections  && \
+    echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections  && \
+    apt-get update && \
+    apt-get --yes install oracle-java8-installer docker-ce ; apt-get clean
 
 ENV JENKINS_HOME /usr/local/jenkins
 
