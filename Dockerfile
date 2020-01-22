@@ -1,4 +1,6 @@
-FROM balenalib/rpi-raspbian:stretch 
+FROM balenalib/armv7hf-debian-qemu
+
+RUN [ "cross-build-start" ]
 
 EXPOSE 8080
 
@@ -30,3 +32,5 @@ RUN chmod 644 /usr/local/jenkins.war
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["/usr/bin/java", "-jar", "/usr/local/jenkins.war"]
+
+RUN [ "cross-build-end" ]
