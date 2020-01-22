@@ -1,4 +1,4 @@
-FROM balenalib/armv7hf-debian-qemu
+FROM resin/armv7hf-debian-qemu
 
 RUN [ "cross-build-start" ]
 
