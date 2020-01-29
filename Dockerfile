@@ -11,7 +11,6 @@ RUN apt-get update; apt-get --yes upgrade; apt-get --yes install \
     curl \
     gnupg2 \
     default-jre \
-    dumb-init \
     software-properties-common \ 
     libapparmor-dev && \
     apt-get clean && apt-get autoremove -q && \
@@ -30,7 +29,6 @@ RUN chown -R jenkins:jenkins /usr/local/jenkins/
 ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/local/jenkins.war
 RUN chmod 644 /usr/local/jenkins.war
 
-ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 CMD ["/usr/bin/java", "-jar", "/usr/local/jenkins.war"]
 
 RUN [ "cross-build-end" ]
