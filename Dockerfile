@@ -20,7 +20,7 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     apt-get clean && apt-get autoremove -q && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
 
-RUN /usr/sbin/update-java-alternatives -s java-1.8.0-openjdk-amd64
+RUN update-java-alternatives -l && /usr/sbin/update-java-alternatives -s java-1.8.0-openjdk-amd64
 
 # Setup docker repo
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
