@@ -13,7 +13,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag rpi-jenkins:latest
     - name: Docker registry login
-    - uses: azure/docker-login@v1
+      uses: azure/docker-login@v1
       with:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
