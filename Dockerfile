@@ -4,6 +4,7 @@ RUN [ "cross-build-start" ]
 
 EXPOSE 8080
 
+RUN echo "deb http://http.debian.net/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
 
 # Get system up to date and install deps.
 RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
