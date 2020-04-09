@@ -8,7 +8,7 @@ RUN apt-get update; apt-get --yes upgrade; apt-get --yes install \
     ca-certificates \
     curl \
     gnupg2 \
-    default-jre \
+    openjdk-8-jre \
     dumb-init \
     software-properties-common \ 
     libapparmor-dev && \
