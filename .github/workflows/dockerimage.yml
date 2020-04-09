@@ -11,6 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-    - name: Hadolint Action
-      uses: brpaz/hadolint-action@v1.0.2
+      run: docker build . --file Dockerfile --tag rpi-jenkins:latest
+    - name: Docker registry login
+    - uses: azure/docker-login@v1
+      with:
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+    - run: |
+        docker build . -t contoso.azurecr.io/k8sdemo:${{ github.sha }}
+        docker push djdefi/rpi-jenkins:latest
