@@ -10,6 +10,7 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     apt-get update; apt-get --yes upgrade; \
     apt install --yes -t jessie-backports openjdk-8-jre-headless ca-certificates-java; \
     apt-get --yes install \
+    java-common \
     apt-transport-https \
     ca-certificates \
     curl \
