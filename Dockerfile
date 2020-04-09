@@ -7,12 +7,13 @@ EXPOSE 8080
 
 # Get system up to date and install deps.
 RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
-    apt-get update; apt-get --yes upgrade; apt-get --yes install \
+    apt-get update; apt-get --yes upgrade; \
+    apt install --yes -t jessie-backports openjdk-8-jre-headless ca-certificates-java; \
+    apt-get --yes install \
     apt-transport-https \
     ca-certificates \
     curl \
     gnupg2 \
-    openjdk-7-jre \
     software-properties-common \ 
     libapparmor-dev && \
     apt-get clean && apt-get autoremove -q && \
