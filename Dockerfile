@@ -4,8 +4,10 @@ RUN [ "cross-build-start" ]
 
 EXPOSE 8080
 
+
 # Get system up to date and install deps.
-RUN apt-get update; apt-get --yes upgrade; apt-get --yes install \
+RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 \
+    apt-get update; apt-get --yes upgrade; apt-get --yes install \
     apt-transport-https \
     ca-certificates \
     curl \
