@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Image CI + build + push
 
 on: [push]
 
@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag rpi-jenkins:latest
+      run: docker build . --file Dockerfile --tag djdefi/rpi-jenkins:latest
     - name: Docker registry login
       uses: azure/docker-login@v1
       with:
