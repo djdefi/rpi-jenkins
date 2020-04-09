@@ -12,8 +12,7 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     ca-certificates \
     curl \
     gnupg2 \
-    openjdk-8-jre \
-    dumb-init \
+    openjdk-7-jre \
     software-properties-common \ 
     libapparmor-dev && \
     apt-get clean && apt-get autoremove -q && \
