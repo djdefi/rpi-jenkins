@@ -8,7 +8,7 @@ EXPOSE 8080
 # Get system up to date and install deps.
 RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     apt-get update; apt-get --yes upgrade; \
-    apt install --yes -t jessie-backports openjdk-8-jre-headless ca-certificates-java; \
+    apt install --yes -t jessie-backports openjdk-8-jdk ca-certificates-java; \
     apt-get --yes install \
     java-common \
     apt-transport-https \
@@ -19,8 +19,6 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     libapparmor-dev && \
     apt-get clean && apt-get autoremove -q && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
-
-RUN update-java-alternatives -l && /usr/sbin/update-java-alternatives -s java-1.8.0-openjdk-amd64
 
 # Setup docker repo
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
