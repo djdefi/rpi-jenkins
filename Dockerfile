@@ -8,7 +8,7 @@ EXPOSE 8080
 # Get system up to date and install deps.
 RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     apt-get update; apt-get --yes upgrade; \
-    apt install --yes -t jessie-backports openjdk-8-jdk ca-certificates-java; \
+    apt install --yes -t jessie-backports openjdk-8-jre-headless ca-certificates-java; \
     apt-get --yes install \
     java-common \
     apt-transport-https \
@@ -24,6 +24,8 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
     echo "deb [arch=armhf] https://download.docker.com/linux/debian \
     $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+
+RUN /usr/sbin/update-java-alternatives -s java-1.8.0-openjdk-armhf
 
 ENV JENKINS_HOME /usr/local/jenkins
 
