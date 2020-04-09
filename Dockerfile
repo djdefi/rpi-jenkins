@@ -6,7 +6,7 @@ EXPOSE 8080
 
 
 # Get system up to date and install deps.
-RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 \
+RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     apt-get update; apt-get --yes upgrade; apt-get --yes install \
     apt-transport-https \
     ca-certificates \
