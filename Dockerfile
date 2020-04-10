@@ -17,6 +17,7 @@ RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     curl \
     gnupg2 \
     software-properties-common \ 
+    git \
     libapparmor-dev && \
     apt-get clean && apt-get autoremove -q && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
