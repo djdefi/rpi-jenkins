@@ -9,8 +9,8 @@ RUN echo "deb http://archive.debian.org/debian jessie-backports main" > /etc/apt
 # Get system up to date and install deps.
 RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
     apt-get -o Acquire::Check-Valid-Until=false update; apt-get --yes upgrade; \
-    apt install --yes -t jessie-backports openjdk-8-jre-headless ca-certificates-java; \
-    apt-get --yes install \
+    apt install --yes --no-install-recommends -t jessie-backports openjdk-8-jre-headless; \
+    apt-get --yes --no-install-recommends install \
     java-common \
     apt-transport-https \
     ca-certificates \
