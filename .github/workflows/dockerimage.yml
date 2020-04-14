@@ -22,7 +22,8 @@ jobs:
         docker buildx build \
           --platform linux/arm/v7 \
           --output "type=image,push=false" \
-          --file ./Dockerfile .
+          --file ./Dockerfile . \
+          --tag djdefi/rpi-jenkins
     - name: Docker registry login
       uses: azure/docker-login@v1
       with:
