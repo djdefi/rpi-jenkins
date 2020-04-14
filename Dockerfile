@@ -1,34 +1,11 @@
-FROM resin/armv7hf-debian-qemu:latest
-
-RUN [ "cross-build-start" ]
+FROM arm32v7/openjdk:latest
 
 EXPOSE 8080
-
-RUN echo "deb http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
-
-# Get system up to date and install deps.
-RUN mkdir -p /usr/share/man/man1mkdir -p /usr/share/man/man1 && \
-    apt-get -o Acquire::Check-Valid-Until=false update; apt-get --yes upgrade; \
-    apt install --yes --no-install-recommends -t jessie-backports openjdk-8-jre-headless openjdk-8-jre; \
-    apt-get --yes --no-install-recommends install \
-    java-common \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg2 \
-    software-properties-common \ 
-    libapparmor-dev && \
-    apt-get clean && apt-get autoremove -q && \
-    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
 
 # Setup docker repo
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
     echo "deb [arch=armhf] https://download.docker.com/linux/debian \
     $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
-
-RUN ls -l /usr/lib/jvm/ 
-RUN /usr/sbin/update-java-alternatives -s java-1.8.0-openjdk-armhf
-
 ENV JENKINS_HOME /usr/local/jenkins
 
 RUN mkdir -p /usr/local/jenkins
@@ -38,5 +15,3 @@ ADD http://mirrors.jenkins-ci.org/war-stable/latest/jenkins.war /usr/local/jenki
 RUN chmod 644 /usr/local/jenkins.war
 
 CMD ["/usr/bin/java", "-jar", "/usr/local/jenkins.war"]
-
-RUN [ "cross-build-end" ]
