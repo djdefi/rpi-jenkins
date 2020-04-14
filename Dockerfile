@@ -4,7 +4,7 @@ ARG TARGETPLATFORM
 EXPOSE 8080
 
 RUN apt-get update; apt-get --yes install \
-    apt-transport-https
+    apt-transport-https \
     curl \
     git \
     ca-certificates \
