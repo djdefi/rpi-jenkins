@@ -21,7 +21,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm/v7 \
-          --output "type=image,push=false" \
+          --output "type=docker,push=false" \
           --file ./Dockerfile . \
           -t djdefi/rpi-jenkins
     - name: List images
