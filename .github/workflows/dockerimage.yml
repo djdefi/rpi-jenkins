@@ -23,7 +23,7 @@ jobs:
           --platform linux/arm/v7 \
           --output "type=image,push=false" \
           --file ./Dockerfile . \
-          --tag djdefi/rpi-jenkins:latest
+          -t djdefi/rpi-jenkins:latest
     - name: Docker registry login
       uses: azure/docker-login@v1
       with:
