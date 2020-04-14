@@ -1,4 +1,5 @@
-FROM arm32v7/openjdk:latest
+FROM --platform=$TARGETPLATFORM openjdk
+ARG TARGETPLATFORM
 
 EXPOSE 8080
 
