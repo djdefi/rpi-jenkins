@@ -3,6 +3,11 @@ ARG TARGETPLATFORM
 
 EXPOSE 8080
 
+# Setup docker repo
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add - && \
+    echo "deb [arch=armhf] https://download.docker.com/linux/debian \
+    $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list
+
 ENV JENKINS_HOME /usr/local/jenkins
 
 RUN mkdir -p /usr/local/jenkins
