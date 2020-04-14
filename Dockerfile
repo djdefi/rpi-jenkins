@@ -3,11 +3,18 @@ ARG TARGETPLATFORM
 
 EXPOSE 8080
 
-# Setup docker repo
 RUN apt-get update; apt-get --yes install \
+    apt-transport-https
     curl \
     git \
-    docker-ce && \
+    ca-certificates \
+    gnupg-agent \
+    software-properties-common && \
+    curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=armhf] https://download.docker.com/linux/debian $(lsb_release -cs) stable" && \
+    apt-get update && \
+    apt-get --yes install \
+    docker-ce docker-ce-cli containerd.io && \
     apt-get clean && apt-get autoremove -q && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
 
