@@ -7,7 +7,7 @@ EXPOSE 8080
 RUN apt-get update; apt-get --yes install \
     curl \
     git \
-    docker && \
+    docker-ce && \
     apt-get clean && apt-get autoremove -q && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
 
