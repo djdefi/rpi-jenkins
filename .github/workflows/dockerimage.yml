@@ -10,8 +10,22 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag djdefi/rpi-jenkins:latest
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: crazy-max/ghaction-docker-buildx@v1
+      with:
+        version: latest
+    - name: Available platforms
+      run: echo ${{ steps.buildx.outputs.platforms }}
+    - name: Run Buildx
+      run: |
+        docker buildx build \
+          --platform linux/arm/v7 \
+          --output "type=docker,push=false" \
+          --file ./Dockerfile . \
+          -t djdefi/rpi-jenkins
+    - name: List images
+      run: docker images list
     - name: Docker registry login
       uses: azure/docker-login@v1
       with:
