@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM openjdk
+FROM --platform=$TARGETPLATFORM arm32v7/openjdk:latest
 ARG TARGETPLATFORM
 
 EXPOSE 8080
