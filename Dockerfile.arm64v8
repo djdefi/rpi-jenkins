@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM amazoncorretto:8
+FROM --platform=$TARGETPLATFORM amd64/eclipse-temurin:8-focal
 ARG TARGETPLATFORM
 
 EXPOSE 8080
