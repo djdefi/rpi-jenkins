@@ -20,14 +20,14 @@ jobs:
       run: echo ${{ steps.buildx.outputs.platforms }}
     - name: Run Build 32bit
       run: |
-        docker build build \
+        docker buildx build \
           --platform linux/arm/v7 \
           --output "type=docker,push=false" \
           --file ./Dockerfile . \
           -t djdefi/rpi-jenkins
     - name: Run Build 64bit
       run: |
-        docker build build \
+        docker buildx build \
           --platform linux/arm64 \
           --output "type=docker,push=false" \
           --file ./Dockerfile.arm64v8 . \
