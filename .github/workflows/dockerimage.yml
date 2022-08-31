@@ -27,7 +27,7 @@ jobs:
     - name: Run Buildx 64bit
       run: |
         docker buildx build \
-          --platform linux/arm/v8 \
+          --platform linux/arm64 \
           --output "type=docker,push=false" \
           --file ./Dockerfile.arm64v8 . \
           -t djdefi/rpi-jenkins-arm64v8
