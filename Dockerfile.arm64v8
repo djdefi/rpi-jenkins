@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM arm64v8/openjdk:latest
+FROM --platform=$TARGETPLATFORM amazoncorretto:8
 ARG TARGETPLATFORM
 
 EXPOSE 8080
