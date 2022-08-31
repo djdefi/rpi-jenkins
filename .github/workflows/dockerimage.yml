@@ -10,8 +10,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - name: Set up Docker Buildx
-      id: buildx
       # https://github.com/docker/setup-qemu-action
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v1
