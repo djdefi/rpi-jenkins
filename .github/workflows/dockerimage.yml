@@ -31,7 +31,7 @@ jobs:
           --platform linux/arm64 \
           --output "type=docker,push=false" \
           --file ./Dockerfile.arm64v8 . \
-          -t djdefi/rpi-jenkins-arm64v8
+          -t djdefi/rpi-jenkins-arm64
     - name: List images
       run: docker images list
     - name: Docker registry login
