@@ -1,4 +1,4 @@
-FROM --platform=$TARGETPLATFORM amd64/eclipse-temurin:8-focal
+FROM --platform=$TARGETPLATFORM amd64/eclipse-temurin:19-focal
 ARG TARGETPLATFORM
 
 EXPOSE 8080
