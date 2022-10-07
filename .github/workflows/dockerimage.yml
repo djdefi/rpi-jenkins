@@ -36,6 +36,19 @@ jobs:
           -t djdefi/rpi-jenkins-arm64
     - name: List images
       run: docker images list
+    - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@7b7aa264d83dc58691451798b4d117d53d21edfe
+        with:
+          image-ref: 'djdefi/rpi-jenkins:latest'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
     - name: Docker registry login
       uses: azure/docker-login@v1
       with:
