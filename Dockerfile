@@ -4,6 +4,7 @@ ARG TARGETPLATFORM
 EXPOSE 8080
 
 RUN apt-get update; apt-get --yes install \
+    apt-get --yes upgrade \
     apt-transport-https \
     curl \
     git \
