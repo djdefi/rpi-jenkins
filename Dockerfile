@@ -4,7 +4,6 @@ ARG TARGETPLATFORM
 EXPOSE 8080
 
 RUN apt-get update; apt-get --yes install \
-    apt-get --yes upgrade \
     apt-transport-https \
     curl \
     git \
@@ -16,6 +15,7 @@ RUN apt-get update; apt-get --yes install \
     apt-get update && \
     apt-get --yes install \
     docker-ce docker-ce-cli containerd.io && \
+    apt-get --yes upgrade && \
     apt-get clean && apt-get autoremove -q && \
     rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man /tmp/*
 
