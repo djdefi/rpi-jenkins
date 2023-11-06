@@ -37,7 +37,7 @@ jobs:
     - name: List images
       run: docker images list
     - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@b77b85c0254bba6789e787844f0585cde1e56320
+      uses: aquasecurity/trivy-action@f78e9ecf42a1271402d4f484518b9313235990e1
       with:
         image-ref: 'djdefi/rpi-jenkins:latest'
         format: 'template'
