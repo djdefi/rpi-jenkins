@@ -20,13 +20,6 @@ jobs:
       uses: docker/setup-buildx-action@v3
     - name: Available platforms
       run: echo ${{ steps.buildx.outputs.platforms }}
-    - name: Run Build 32bit
-      run: |
-        docker buildx build \
-          --platform linux/arm/v7 \
-          --output "type=docker,push=false" \
-          --file ./Dockerfile . \
-          -t djdefi/rpi-jenkins
     - name: Run Build 64bit
       run: |
         docker buildx build \
@@ -55,5 +48,4 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker push djdefi/rpi-jenkins:latest
         docker push djdefi/rpi-jenkins-arm64:latest
