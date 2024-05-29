@@ -43,7 +43,7 @@ jobs:
       with:
         sarif_file: 'trivy-results.sarif'
     - name: Docker registry login
-      uses: azure/docker-login@v1
+      uses: azure/docker-login@v2
       with:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
